@@ -13,7 +13,9 @@
 <%
 =end%>
 
-<%= form_tag("/users", method: 'post') do%>
+<%
+=begin%>
+ <%= form_tag("/users", method: 'post') do%>
 <%= label(:user, :username) %>
 <%= text_field(:user, :username)%>
 <%= label(:user, :email)%>
@@ -21,4 +23,16 @@
 <%= label(:user, :password)%>
 <%= password_field(:user, :password)%>
 <%= submit_tag %>
-<% end %>
+<% end %> 
+<%
+=end%>
+
+<%= form_with url: '/users', method: 'post', model: @user do |form| %>
+  <%= form.label :username, 'Username:'%>
+  <%= form.text_field :username %>
+  <%= form.label :email, 'Email:'%>
+  <%= form.email_field :email %>
+  <%= form.label :password, 'Password:'%>
+  <%= form.password_field :password %>
+  <%= form.submit %>
+<%end%>
